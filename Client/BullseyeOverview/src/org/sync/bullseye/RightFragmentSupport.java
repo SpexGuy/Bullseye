@@ -25,12 +25,12 @@ public class RightFragmentSupport {
 	String responseStr="";
 	View original;
 	Activity activity;
-	final String USERNAME;
+	final String USERNAME="spexguy";
 
 	public RightFragmentSupport(View v, Activity active, String userName){
 		activity=active;
 		original=v;
-		USERNAME=userName;
+		//USERNAME=userName;
 		String getUpgrades = "get-upgrades/?user="+USERNAME;
 		new MakeGetCall().execute(getUpgrades);
 

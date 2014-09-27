@@ -1,5 +1,6 @@
 package org.sync.bullseye;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
@@ -9,6 +10,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 
 public class ArrayListFragment extends ListFragment {
@@ -52,7 +56,7 @@ public class ArrayListFragment extends ListFragment {
 			v = inflater.inflate(R.layout.middle_fragment, container, false);
 			View tv = v.findViewById(R.id.text);
 			((TextView)tv).setText("This is the middle frag, has graphics");
-			middleHelper = new MiddleFragmentSupport(v);
+			middleHelper = new MiddleFragmentSupport(v,this.getActivity());
 			
 		}
 		if(mNum==2){
@@ -63,6 +67,7 @@ public class ArrayListFragment extends ListFragment {
 		return v;
 	}
 
+	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);

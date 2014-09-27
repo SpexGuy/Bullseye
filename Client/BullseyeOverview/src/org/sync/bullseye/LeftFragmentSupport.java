@@ -29,7 +29,8 @@ public class LeftFragmentSupport {
 	public LeftFragmentSupport(View v, Activity active){
 		original=v;
 		activity=active;
-		new MakeGetCall().execute();
+		String command = "get-tasks/?user=spexguy";
+		new MakeGetCall().execute(command);
 	}
 	public void setUpLayout(TaskStatusLists tasks){ //takes in object holding 3 arrayLists.
 
@@ -99,8 +100,11 @@ public class LeftFragmentSupport {
 		@Override
 		protected Object doInBackground(Object... arg0) {
 			//String test = (String)arg0[0];
+			if(arg0[0] == null || arg0[0].getClass() != String.class){
+				throw new RuntimeException(); //bad things happened
+			}
 			String url = "http://bullseye-server.herokuapp.com/";
-			String command = "get-tasks/?user=spexguy";		
+			String command = (String) arg0[0];		
 			HttpGet httpGet = new HttpGet(url+command);
 			HttpClient httpClient = new DefaultHttpClient(); 
 			try {
@@ -122,13 +126,19 @@ public class LeftFragmentSupport {
 				// handle exception
 			}			
 			activity.runOnUiThread(new Runnable() {
+				
 				public void run(){
-				TaskStatusLists lists = new TaskStatusLists(responseStr);
-				setUpLayout(lists);
-				}});
+					if(!responseStr.equals("true") && !responseStr.equals("false")){
+						TaskStatusLists lists = new TaskStatusLists(responseStr);
+						setUpLayout(lists);
+					}
+				}
+			});
+			
 			
 			return null;
 		}
+		
 
 	}
 	
