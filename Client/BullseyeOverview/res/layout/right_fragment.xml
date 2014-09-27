@@ -55,6 +55,7 @@
             android:id="@+id/feature_list_ScrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:scrollbars="vertical"
             android:layout_marginTop="25dp" >
 
             <LinearLayout
@@ -62,19 +63,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
-                <LinearLayout
-                    android:id="@+id/feature_list_LinearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:measureWithLargestChild="true"
-                    android:orientation="horizontal" />
+                
             </LinearLayout>
         </ScrollView>
 
         <ListView
             android:id="@android:id/list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:layout_marginTop="40sp"
             android:drawSelectorOnTop="false" />
     </FrameLayout>
