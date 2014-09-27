@@ -13,57 +13,60 @@
         android:text="Things to do:"
         android:textSize="40sp" />
 
-    <!--
-    The frame layout is here since we will be showing either
-    the empty view or the list view.
-    -->
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_weight="1" >
 
-        <!--
-             Here is the list. Since we are using a ListActivity, we
-             have to call it "@android:id/list" so ListActivity will
-             find it
-        -->
-
-        <LinearLayout
-            android:id="@+id/descriptions_LinearLayout"
+        <ScrollView
+            android:id="@+id/table_layout_holder_ScrollView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="match_parent" >
 
-            <TextView
-                android:id="@+id/task_description_TextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="20sp"
-                android:text="Description" />
-            <TextView
-                android:id="@+id/duration_description_TextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="20sp"
-                android:text="Time Required" />
-            </LinearLayout>
-
-            <ListView
-                android:id="@android:id/list"
+            <TableLayout
+                android:id="@+id/task_list_TableLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="40dp"
-                android:drawSelectorOnTop="false" />
-        
-    </FrameLayout>
+                android:layout_height="match_parent" >
 
-	<Button
-	    android:id="@+id/test_Button"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_gravity="center"
-	    android:text="works?" />
+                <TableRow
+                    android:id="@+id/row_1_TableRow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp" >
+
+                    <TextView
+                        android:id="@+id/row_1_col_1_TextView"
+                        android:layout_weight="2"
+                        android:text="Description"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/row_1_col_2_TextView"
+                        android:layout_weight="1"
+                        android:text="Time"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/row_1_col_3_TextView"
+                        android:layout_weight="1"
+                        android:text="Workers"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/row_1_col_4_TextView"
+                        android:layout_weight="1"
+                        android:text="Reward"
+                        android:textSize="18dp" />
+                </TableRow>
+            </TableLayout>
+        </ScrollView>
+
+        <ListView
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="40dp"
+            android:drawSelectorOnTop="false" />
+    </FrameLayout>
 
 </LinearLayout>

@@ -48,7 +48,7 @@ public class ArrayListFragment extends ListFragment {
 		if(mNum==0){
 			LeftFragmentSupport leftHelper;
 			v = inflater.inflate(R.layout.left_fragment, container, false);
-			leftHelper= new LeftFragmentSupport(v);
+			leftHelper= new LeftFragmentSupport(v,this.getActivity());
 			
 		}
 		if(mNum == 1){

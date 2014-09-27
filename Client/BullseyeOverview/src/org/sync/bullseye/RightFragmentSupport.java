@@ -80,6 +80,7 @@ import android.widget.TextView;
 	}
 	public void updateSelectedList(Button lb){
 
+		//put code to make server call.
 	}
 	private class MakeGetCall extends AsyncTask {
 

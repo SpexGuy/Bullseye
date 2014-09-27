@@ -5,7 +5,7 @@ public class Task {
 	int cost;
 	int time;
 	int reward;
-	public Upgrade(String name, int cost,int time,int reward){
+	public Task(String name, int cost,int time,int reward){
 		this.name=name;
 		this.cost=cost;
 		this.time=time;
@@ -19,7 +19,7 @@ public class Task {
 	public int getTime(){
 		return time;
 	}
-	public int reward()
+	public int getReward()
 	{
 		return reward;
 	}
