@@ -1,0 +1,53 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".BullseyeOverview" >
+
+    <TextView
+        android:id="@+id/title_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Bullseye"
+        android:textSize="50sp" />
+
+    <Button
+        android:id="@+id/store_Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_TextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:onClick="goToStore"
+        android:text="Store" />
+       
+
+    <Button
+        android:id="@+id/account_Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/store_Button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:text="Account"
+        android:onClick="goToAccount" />
+        
+    
+    <Button
+        android:id="@+id/newGame_Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/account_Button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:onClick="startNewGame"
+        android:text="New Game" />
+
+</RelativeLayout>
