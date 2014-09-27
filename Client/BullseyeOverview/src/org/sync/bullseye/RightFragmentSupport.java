@@ -35,51 +35,35 @@ import android.widget.TextView;
 
 	}
 	public void setUpLayout(UpgradeStatusLists status){ //takes in object holding 3 arrayLists.
-		ArrayList<Upgrade> temp = new ArrayList<Upgrade>();
-		temp.add(new Upgrade("parking lot",100));
-		temp.add(new Upgrade("check out lane", 200));
-		temp.add(new Upgrade("parking lot",100));
-		temp.add(new Upgrade("check out lane1", 200));
-		temp.add(new Upgrade("parking lot",100));
-		temp.add(new Upgrade("check out lane2", 200));
-		temp.add(new Upgrade("parking lot",100));
-		temp.add(new Upgrade("check out lane3", 200));
-		temp.add(new Upgrade("parking lot",100));
-		temp.add(new Upgrade("check out lane4", 200));
-		temp.add(new Upgrade("parking lot",100));
-		temp.add(new Upgrade("check out lane5", 200));
-		temp.add(new Upgrade("parking lot",100));
-		temp.add(new Upgrade("check out lane6", 200));
-		temp.add(new Upgrade("parking lot",100));
-		temp.add(new Upgrade("check out lane7", 200));
-		temp.add(new Upgrade("parking lot",100));
-		temp.add(new Upgrade("check out lane8", 200));
-		temp.add(new Upgrade("parking lot",100));
-		temp.add(new Upgrade("check out lane9", 200));
-		temp.add(new Upgrade("parking lot",100));
-		temp.add(new Upgrade("check out lane10", 200));
-		temp.add(new Upgrade("parking lot",100));
-		temp.add(new Upgrade("check out lane11", 200));
-		
-		//status.g=temp; //test;
-		//iterates through each thing.
+
 		LinearLayout upgradeField = (LinearLayout)original.findViewById(R.id.individual_feature_LinearLayout);
-		for(int x=0; x<temp.size(); x++){
+		
+		for(int x=0; x<status.getAlreadyPurchased().size(); x++){
 			LinearLayout upgradeDescription = new LinearLayout(original.getContext());
-			Button upgradeName = setUpButton(temp.get(x).getName());
-			TextView upgradeCost = new TextView(original.getContext()); 
-			upgradeCost.setText(Integer.toString(temp.get(x).getCost()));
+			Button upgradeName = setUpButton(status.getAlreadyPurchased().get(x).getName());
+			upgradeDescription.addView(upgradeName);
+			upgradeField.addView(upgradeDescription);
+		}
+		
+		for(int x=0; x<status.getInProduction().size();x++){
+			LinearLayout upgradeDescription = new LinearLayout(original.getContext());
+			Button upgradeName = setUpButton(status.getInProduction().get(x).getName());
+			TextView timeLeft = new TextView(original.getContext());
+			timeLeft.setText(Integer.toString(status.getInProduction().get(x).getTime()));
+			upgradeDescription.addView(upgradeName);
+			upgradeDescription.addView(timeLeft);
+			upgradeField.addView(upgradeDescription);
+		}
+		
+		for(int x=0; x<status.getCanPurchase().size(); x++){
+			LinearLayout upgradeDescription = new LinearLayout(original.getContext());
+			Button upgradeName = setUpButton(status.getCanPurchase().get(x).getName());
+			TextView upgradeCost = new TextView(original.getContext());
+			upgradeCost.setText(Integer.toString(status.getCanPurchase().get(x).getCost()));
 			upgradeDescription.addView(upgradeName);
 			upgradeDescription.addView(upgradeCost);
-			upgradeCost.setTextAlignment(View.LAYOUT_DIRECTION_RTL);
 			upgradeField.addView(upgradeDescription);
-			
 		}
-		//LinearLayout featureList = (LinearLayout)original.findViewById(R.id.feature_list_LinearLayout);
-		//Button feature = setUpButton(responseStr);
-		//Button test = setUpButton("$1000");
-		//featureList.addView(feature);
-		//featureList.addView(test);
 
 	}
 	private Button setUpButton(final String name) {

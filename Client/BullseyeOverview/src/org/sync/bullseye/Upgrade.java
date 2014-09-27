@@ -16,5 +16,8 @@ public class Upgrade {
 	public int getCost(){
 		return cost;
 	}
+	public int getTime(){
+		return time;
+	}
 
 }

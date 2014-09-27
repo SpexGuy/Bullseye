@@ -1,34 +1,43 @@
 package org.sync.bullseye;
-import org.json.*;
 import java.util.ArrayList;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class UpgradeStatusLists {
 	
 	ArrayList<Upgrade> alreadyPurchased = new ArrayList<Upgrade>();
-	ArrayList<InProgressUpgrade> inProduction = new ArrayList<InProgressUpgrade>();
+	ArrayList<Upgrade> inProduction = new ArrayList<Upgrade>();
 	ArrayList<Upgrade> canPurchase = new ArrayList<Upgrade>();
 	
 	public UpgradeStatusLists(String serverResponse){
-		JSONObject obj = new JSONObject("serverResponse");
-		JSONArray  availableArray = obj.getJSONObject("available");
+		
+		try{
+		JSONObject obj = new JSONObject(serverResponse);
+		JSONArray  availableArray = obj.getJSONArray("available");
 		for(int i = 0 ; i < availableArray.length() ; i++)
 		{
 			JSONObject o = availableArray.getJSONObject(i);
 			canPurchase.add(new Upgrade(o.getString("name"),o.getInt("cost"),o.getInt("time")));
 		}
-		JSONArray a = obj.getJSONObject("unlocked");
+		JSONArray a = obj.getJSONArray("unlocked");
 		for(int i = 0 ; i < a.length() ; i++)
 		{
 			JSONObject o = a.getJSONObject(i);
 			alreadyPurchased.add(new Upgrade(o.getString("name"),o.getInt("cost"),o.getInt("time")));
 		}
-		a = obj.getJSONObject("inProgress");
+		a = obj.getJSONArray("inProgress");
 		for(int i = 0 ; i < a.length() ; i++)
 		{
 			JSONArray subA = a.getJSONArray(i);
-			JSONObject o = subA.get(1);
-			inProduction.add(new InProgressUpgrade(o.getString("name"),o.getInt("cost"),o.getInt("time"),subA.get(0)));
+			JSONObject o = (JSONObject) subA.get(1);
+			inProduction.add(new Upgrade(o.getString("name"),o.getInt("cost"),o.getInt("time")));
 		}
+		}catch(JSONException e){
+			throw new RuntimeException(e);
+		};
+		
 
 	}
 	public ArrayList<Upgrade> getAlreadyPurchased(){
