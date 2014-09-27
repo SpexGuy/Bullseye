@@ -1,38 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:drawable/gallery_thumb">
+    android:background="@android:drawable/gallery_thumb"
+    android:orientation="vertical" >
 
-    <TextView android:id="@+id/text"
-        android:layout_width="match_parent" android:layout_height="wrap_content"
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical|center_horizontal"
-        android:textSize="40sp"
-        android:text="Store Features"/>
+        android:text="Store Features"
+        android:textSize="40sp" />
 
-    <!-- The frame layout is here since we will be showing either
-    the empty view or the list view.  -->
+    <!--
+    The frame layout is here since we will be showing either
+    the empty view or the list view.
+    -->
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_weight="1" >
-        <!-- Here is the list. Since we are using a ListActivity, we
+
+        <!--
+             Here is the list. Since we are using a ListActivity, we
              have to call it "@android:id/list" so ListActivity will
-             find it -->
+             find it
+        -->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal" >
-            
-            <TextView 
+
+            <TextView
                 android:id="@+id/feature_description_TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Feature List"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
+
             <TextView
                 android:id="@+id/price_description_TextView"
                 android:layout_width="wrap_content"
@@ -40,15 +49,34 @@
                 android:layout_weight="1"
                 android:text="Cost"
                 android:textSize="20sp" />
-            
-        </LinearLayout>  
-          
-        <ListView android:id="@android:id/list"
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/feature_list_ScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="25dp" >
+
+            <LinearLayout
+                android:id="@+id/individual_feature_LinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+                <LinearLayout
+                    android:id="@+id/feature_list_LinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:measureWithLargestChild="true"
+                    android:orientation="horizontal" />
+            </LinearLayout>
+        </ScrollView>
+
+        <ListView
+            android:id="@android:id/list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="40sp"
-            android:drawSelectorOnTop="false"/>
-
+            android:drawSelectorOnTop="false" />
     </FrameLayout>
 
 </LinearLayout>

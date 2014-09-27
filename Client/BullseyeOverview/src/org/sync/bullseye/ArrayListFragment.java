@@ -52,14 +52,17 @@ public class ArrayListFragment extends ListFragment {
 			
 		}
 		if(mNum == 1){
+			MiddleFragmentSupport middleHelper;
 			v = inflater.inflate(R.layout.middle_fragment, container, false);
 			View tv = v.findViewById(R.id.text);
 			((TextView)tv).setText("This is the middle frag, has graphics");
+			middleHelper = new MiddleFragmentSupport(v);
+			
 		}
 		if(mNum==2){
 			RightFragmentSupport rightHelper;
 			v = inflater.inflate(R.layout.right_fragment, container, false);
-			rightHelper = new RightFragmentSupport(v);
+			rightHelper = new RightFragmentSupport(v,this.getActivity());
 		}
 		return v;
 	}
