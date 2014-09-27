@@ -13,14 +13,13 @@ import android.widget.TextView;
 
 public class ArrayListFragment extends ListFragment {
 	int mNum;
-
+	
 	/**
 	 * Create a new instance of CountingFragment, providing "num"
 	 * as an argument.
 	 */
 	static ArrayListFragment newInstance(int num) {
 		ArrayListFragment f = new ArrayListFragment();
-
 		// Supply num input as an argument.
 		Bundle args = new Bundle();
 		args.putInt("num", num);
@@ -37,10 +36,7 @@ public class ArrayListFragment extends ListFragment {
 		mNum = getArguments() != null ? getArguments().getInt("num") : 1;
 	}
 
-	/**
-	 * The Fragment's UI is just a simple text view showing its
-	 * instance number.
-	 */
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -62,7 +58,7 @@ public class ArrayListFragment extends ListFragment {
 		if(mNum==2){
 			RightFragmentSupport rightHelper;
 			v = inflater.inflate(R.layout.right_fragment, container, false);
-			rightHelper = new RightFragmentSupport(v,this.getActivity());
+			rightHelper = new RightFragmentSupport(v,this.getActivity(),"spexguy");
 		}
 		return v;
 	}
