@@ -11,6 +11,9 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.app.Activity;
 import android.os.AsyncTask;
@@ -19,6 +22,7 @@ import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class RightFragmentSupport {
 
@@ -41,6 +45,7 @@ public class RightFragmentSupport {
 					String baseUrl = "http://bullseye-server.herokuapp.com/";	
 					HttpGet httpGet = new HttpGet(baseUrl+command);
 					HttpClient httpClient = new DefaultHttpClient(); 
+					String responseForToast;
 					try {
 						HttpResponse response = httpClient.execute(httpGet);
 						StatusLine statusLine = response.getStatusLine();
@@ -48,7 +53,37 @@ public class RightFragmentSupport {
 							HttpEntity entity = response.getEntity();
 							ByteArrayOutputStream out = new ByteArrayOutputStream();
 							entity.writeTo(out);
+							responseForToast=out.toString();
+							try {
+								final JSONObject obj = new JSONObject(responseForToast);
+								JSONArray arr = obj.getJSONArray("scans");
+								if (arr.length() > 0) {
+									final JSONArray parts = arr.getJSONArray(0);
+									activity.runOnUiThread(new Runnable(){public void run(){							
+									try {
+										//int cash = (int) obj.getDouble("money");
+										//TextView tx = (TextView) original.findViewById(R.id.total_money_TextView);
+										//tx.setText(cash);
+										Toast.makeText(RightFragmentSupport.this.activity.getApplicationContext(),
+												"UPC "+parts.get(0)+" scanned for $"+parts.get(1),
+												Toast.LENGTH_LONG).show();
+									} catch (JSONException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									};
+									
+									}});
+									
+								}
+								
+								
+								
+							} catch (JSONException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 							out.close();
+							
 							// do something with response 
 						} else {
 							// handle bad response

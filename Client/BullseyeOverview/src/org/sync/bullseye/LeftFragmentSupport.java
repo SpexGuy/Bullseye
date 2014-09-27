@@ -41,7 +41,7 @@ public class LeftFragmentSupport {
 		
 		for(int x=0; x<tasks.getCurrentlyActive().size(); x++){
 			TableRow taskDescription = new TableRow(original.getContext());
-			Button taskName = setUpButton(tasks.getCurrentlyActive().get(x).getName());
+			Button taskName = setUpButton(tasks.getCurrentlyActive().get(x).getName(),x);
 			TextView timeRemaining = new TextView(original.getContext());
 			timeRemaining.setText(Integer.toString(tasks.getCurrentlyActive().get(x).getTime()));
 			TextView workers = new TextView(original.getContext());
@@ -66,7 +66,7 @@ public class LeftFragmentSupport {
 		
 		for(int x=0; x<tasks.getCurrentlyInactive().size(); x++){
 			TableRow taskDescription = new TableRow(original.getContext());
-			Button taskName = setUpButton(tasks.getCurrentlyInactive().get(x).getName());
+			Button taskName = setUpButton(tasks.getCurrentlyInactive().get(x).getName(),x);
 			TextView timeRemaining = new TextView(original.getContext());
 			timeRemaining.setText(Integer.toString(tasks.getCurrentlyInactive().get(x).getTime()));
 			TextView workers = new TextView(original.getContext());
@@ -80,21 +80,22 @@ public class LeftFragmentSupport {
 			taskField.addView(taskDescription);
 		}
 	}
-	private Button setUpButton(final String name) {
+	private Button setUpButton(final String name, int index) {
 		final Button listButton = new Button(original.getContext());
+		final int DESIREDINT=index;
 		listButton.setText(name);
 		listButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				updateSelectedList(listButton);
+				String command = "start-task/?user="+"spexguy"+"&index="+DESIREDINT;
+				MakeGetCall callServer = new MakeGetCall();
+				callServer.execute(command);
 			}
 
 		});
 		return listButton;
 	}
-	public void updateSelectedList(Button lb){
-		//put code to make server call.
-	}
+
 	private class MakeGetCall extends AsyncTask {
 
 		@Override

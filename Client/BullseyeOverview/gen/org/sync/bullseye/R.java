@@ -32,7 +32,7 @@ public final class R {
     }
     public static final class id {
         public static final int account_Button=0x7f080002;
-        public static final int action_settings=0x7f080015;
+        public static final int action_settings=0x7f080016;
         public static final int barcode_TextView=0x7f08000e;
         public static final int description_TableRow=0x7f080012;
         public static final int feature_list_ScrollView=0x7f080010;
@@ -51,6 +51,7 @@ public final class R {
         public static final int task_list_TableLayout=0x7f080008;
         public static final int text=0x7f080005;
         public static final int title_TextView=0x7f080000;
+        public static final int total_money_TextView=0x7f080015;
         public static final int upgrade_cost_TextView=0x7f080014;
         public static final int upgrade_description_TextView=0x7f080013;
     }
