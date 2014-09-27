@@ -25,11 +25,10 @@ public final class R {
     }
     public static final class id {
         public static final int account_Button=0x7f080002;
-        public static final int action_settings=0x7f08000f;
+        public static final int action_settings=0x7f08000e;
         public static final int descriptions_LinearLayout=0x7f080006;
         public static final int duration_description_TextView=0x7f080008;
         public static final int feature_description_TextView=0x7f08000a;
-        public static final int feature_list_LinearLayout=0x7f08000e;
         public static final int feature_list_ScrollView=0x7f08000c;
         public static final int individual_feature_LinearLayout=0x7f08000d;
         public static final int newGame_Button=0x7f080003;
