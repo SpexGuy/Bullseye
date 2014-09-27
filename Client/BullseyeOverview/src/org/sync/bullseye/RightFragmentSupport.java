@@ -20,8 +20,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 @SuppressLint("NewApi") public class RightFragmentSupport {
-	boolean getCallFinished=false;
-	String returnedData="No data";
+	String responseStr="";
 	View original;
 	Activity activity;
 	public RightFragmentSupport(View v, Activity active){
@@ -32,10 +31,17 @@ import android.widget.LinearLayout;
 
 
 	}
-	public void setUpLayout(){
+	public void setUpLayout(UpgradeStatusLists status){ //takes in object holding 3 arrayLists.
 		
+		//iterates through each thing.
+		//ScrollView scroll = 
+		for(int x=0; x<status.getAlreadyPurchased().size(); x++){
+			
+			
+			
+		}
 		LinearLayout featureList = (LinearLayout)original.findViewById(R.id.feature_list_LinearLayout);
-		Button feature = setUpButton(returnedData);
+		Button feature = setUpButton(responseStr);
 		Button test = setUpButton("$1000");
 		featureList.addView(feature);
 		featureList.addView(test);
@@ -66,7 +72,6 @@ import android.widget.LinearLayout;
 			String command = "get-upgrades/?user=spexguy";		
 			HttpGet httpGet = new HttpGet(url+command);
 			HttpClient httpClient = new DefaultHttpClient(); 
-			String responseStr = null;
 			try {
 				HttpResponse response = httpClient.execute(httpGet);
 				StatusLine statusLine = response.getStatusLine();
@@ -84,12 +89,12 @@ import android.widget.LinearLayout;
 				// handle exception
 			} catch (IOException e) {
 				// handle exception
-			}
-			getCallFinished=true;
-			returnedData=responseStr;
+			}			
 			activity.runOnUiThread(new Runnable() {
 				public void run(){
-				setUpLayout();
+				UpgradeStatusLists lists = new UpgradeStatusLists(responseStr);
+				//parseStrings(); returns 3 separate array lists done, in progrgress, yet to be completed.
+				setUpLayout(lists);
 				}});
 			
 			return null;
