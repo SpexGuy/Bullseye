@@ -49,7 +49,6 @@ public class RightFragmentSupport {
 							ByteArrayOutputStream out = new ByteArrayOutputStream();
 							entity.writeTo(out);
 							out.close();
-							responseStr = out.toString();
 							// do something with response 
 						} else {
 							// handle bad response
@@ -125,7 +124,7 @@ public class RightFragmentSupport {
 			@Override
 			public void onClick(View v) {
 				//make asynch call to server given my index.
-				String command = "buy-upgrade/?"+USERNAME+"&index="+DESIREDINT;
+				String command = "buy-upgrade/?user="+USERNAME+"&index="+DESIREDINT;
 				MakeGetCall callServer = new MakeGetCall();
 				callServer.execute(command);
 			}
@@ -165,9 +164,12 @@ public class RightFragmentSupport {
 			}			
 			activity.runOnUiThread(new Runnable() {
 				public void run(){
-					UpgradeStatusLists lists = new UpgradeStatusLists(responseStr);
-					//parseStrings(); returns 3 separate array lists done, in progrgress, yet to be completed.
-					setUpLayout(lists);
+					if(!responseStr.equals("true") && !responseStr.equals("false")){
+						UpgradeStatusLists lists = new UpgradeStatusLists(responseStr);
+						//parseStrings(); returns 3 separate array lists done, in progrgress, yet to be completed.
+						setUpLayout(lists);
+					}
+					
 				}});
 
 			return null;
