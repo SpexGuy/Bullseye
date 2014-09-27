@@ -16,28 +16,30 @@ import android.app.Activity;
 import android.os.AsyncTask;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 public class LeftFragmentSupport {
 
 	View original;
-	String responseStr;
+	String responseStr="";
 	Activity activity;
 	
 	public LeftFragmentSupport(View v, Activity active){
 		original=v;
 		activity=active;
-		TextView tx= (TextView)v.findViewById(R.id.text);
 		new MakeGetCall().execute();
 	}
 	public void setUpLayout(TaskStatusLists tasks){ //takes in object holding 3 arrayLists.
 
+		TextView freeEmployees = (TextView)(original.findViewById(R.id.free_employees_TextView));
+		int numFreeEmployees = tasks.getNumFreeEmployees();
+		freeEmployees.setText("Free Employees: "+numFreeEmployees);
 		TableLayout taskField = (TableLayout)original.findViewById(R.id.task_list_TableLayout);
 		
 		for(int x=0; x<tasks.getCurrentlyActive().size(); x++){
-			LinearLayout taskDescription = new LinearLayout(original.getContext());
+			TableRow taskDescription = new TableRow(original.getContext());
 			Button taskName = setUpButton(tasks.getCurrentlyActive().get(x).getName());
 			TextView timeRemaining = new TextView(original.getContext());
 			timeRemaining.setText(Integer.toString(tasks.getCurrentlyActive().get(x).getTime()));
@@ -51,9 +53,18 @@ public class LeftFragmentSupport {
 			taskDescription.addView(reward);
 			taskField.addView(taskDescription);
 		}
+
+		//adds an empty line
+		TableRow empty = new TableRow(original.getContext());
+		TextView pmet = new TextView(original.getContext());
+		pmet.setText(" ");
+		empty.addView(pmet);
+		taskField.addView(empty);
+		
+
 		
 		for(int x=0; x<tasks.getCurrentlyInactive().size(); x++){
-			LinearLayout taskDescription = new LinearLayout(original.getContext());
+			TableRow taskDescription = new TableRow(original.getContext());
 			Button taskName = setUpButton(tasks.getCurrentlyInactive().get(x).getName());
 			TextView timeRemaining = new TextView(original.getContext());
 			timeRemaining.setText(Integer.toString(tasks.getCurrentlyInactive().get(x).getTime()));
@@ -84,7 +95,6 @@ public class LeftFragmentSupport {
 		//put code to make server call.
 	}
 	private class MakeGetCall extends AsyncTask {
-
 
 		@Override
 		protected Object doInBackground(Object... arg0) {

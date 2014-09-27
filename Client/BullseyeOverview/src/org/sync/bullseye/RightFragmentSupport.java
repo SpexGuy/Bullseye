@@ -2,7 +2,6 @@ package org.sync.bullseye;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -13,40 +12,49 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
-@SuppressLint("NewApi") public class RightFragmentSupport {
+public class RightFragmentSupport {
+	
 	String responseStr="";
 	View original;
 	Activity activity;
+	
 	public RightFragmentSupport(View v, Activity active){
 		activity=active;
 		original=v;
-		new MakeGetCall().execute("blah");
+		new MakeGetCall().execute();
 		//setUpLayout();
 
 
 	}
 	public void setUpLayout(UpgradeStatusLists status){ //takes in object holding 3 arrayLists.
 
-		LinearLayout upgradeField = (LinearLayout)original.findViewById(R.id.individual_feature_LinearLayout);
+		TableLayout upgradeField = (TableLayout)original.findViewById(R.id.individual_feature_TableRow);
 		
 		for(int x=0; x<status.getAlreadyPurchased().size(); x++){
-			LinearLayout upgradeDescription = new LinearLayout(original.getContext());
+			TableRow upgradeDescription = new TableRow(original.getContext());
 			Button upgradeName = setUpButton(status.getAlreadyPurchased().get(x).getName());
 			upgradeDescription.addView(upgradeName);
 			upgradeField.addView(upgradeDescription);
 		}
 		
+		//adds an empty line
+		TableRow empty = new TableRow(original.getContext());
+		TextView pmet = new TextView(original.getContext());
+		pmet.setText(" ");
+		empty.addView(pmet);
+		upgradeField.addView(empty);
+		
 		for(int x=0; x<status.getInProduction().size();x++){
-			LinearLayout upgradeDescription = new LinearLayout(original.getContext());
+			TableRow upgradeDescription = new TableRow(original.getContext());
 			Button upgradeName = setUpButton(status.getInProduction().get(x).getName());
 			TextView timeLeft = new TextView(original.getContext());
 			timeLeft.setText(Integer.toString(status.getInProduction().get(x).getTime()));
@@ -55,8 +63,15 @@ import android.widget.TextView;
 			upgradeField.addView(upgradeDescription);
 		}
 		
+		//adds an empty line
+		empty = new TableRow(original.getContext());
+		pmet = new TextView(original.getContext());
+		pmet.setText(" ");
+		empty.addView(pmet);
+		upgradeField.addView(empty);
+		
 		for(int x=0; x<status.getCanPurchase().size(); x++){
-			LinearLayout upgradeDescription = new LinearLayout(original.getContext());
+			TableRow upgradeDescription = new TableRow(original.getContext());
 			Button upgradeName = setUpButton(status.getCanPurchase().get(x).getName());
 			TextView upgradeCost = new TextView(original.getContext());
 			upgradeCost.setText(Integer.toString(status.getCanPurchase().get(x).getCost()));

@@ -25,23 +25,25 @@ public final class R {
     }
     public static final class id {
         public static final int account_Button=0x7f080002;
-        public static final int action_settings=0x7f080011;
-        public static final int feature_description_TextView=0x7f08000d;
-        public static final int feature_list_ScrollView=0x7f08000f;
-        public static final int individual_feature_LinearLayout=0x7f080010;
+        public static final int action_settings=0x7f080013;
+        public static final int description_TableRow=0x7f080010;
+        public static final int feature_list_ScrollView=0x7f08000e;
+        public static final int free_employees_TextView=0x7f080006;
+        public static final int individual_feature_TableRow=0x7f08000f;
         public static final int newGame_Button=0x7f080003;
         public static final int pager=0x7f080004;
-        public static final int price_description_TextView=0x7f08000e;
-        public static final int row_1_TableRow=0x7f080008;
-        public static final int row_1_col_1_TextView=0x7f080009;
-        public static final int row_1_col_2_TextView=0x7f08000a;
-        public static final int row_1_col_3_TextView=0x7f08000b;
-        public static final int row_1_col_4_TextView=0x7f08000c;
+        public static final int row_1_TableRow=0x7f080009;
+        public static final int row_1_col_1_TextView=0x7f08000a;
+        public static final int row_1_col_2_TextView=0x7f08000b;
+        public static final int row_1_col_3_TextView=0x7f08000c;
+        public static final int row_1_col_4_TextView=0x7f08000d;
         public static final int store_Button=0x7f080001;
-        public static final int table_layout_holder_ScrollView=0x7f080006;
-        public static final int task_list_TableLayout=0x7f080007;
+        public static final int table_layout_holder_ScrollView=0x7f080007;
+        public static final int task_list_TableLayout=0x7f080008;
         public static final int text=0x7f080005;
         public static final int title_TextView=0x7f080000;
+        public static final int upgrade_cost_TextView=0x7f080012;
+        public static final int upgrade_description_TextView=0x7f080011;
     }
     public static final class layout {
         public static final int activity_account_options=0x7f030000;

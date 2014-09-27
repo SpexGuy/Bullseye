@@ -7,28 +7,31 @@ import org.json.JSONObject;
 
 public class TaskStatusLists {
 	
-	ArrayList<Task> current = new ArrayList<Task>();
-	ArrayList<Task> future = new ArrayList<Task>();
+	private ArrayList<Task> current = new ArrayList<Task>();
+	private ArrayList<Task> future = new ArrayList<Task>();
+	private int numEmployees=-1;
 	
 	public TaskStatusLists(String serverResponse){
 		
 
 		try{
 		JSONObject obj = new JSONObject(serverResponse);
-		int numEmployees = obj.getInt("employeesAvailable");
+		numEmployees = obj.getInt("employeesAvailable");
 		JSONArray  availableArray = obj.getJSONArray("tasksAvailable");
 		for(int i = 0 ; i < availableArray.length() ; i++)
 		{
 			JSONObject o = availableArray.getJSONObject(i);
-			current.add(new Task(o.getString("name"),o.getInt("cost"),o.getInt("time"),o.getInt("reward")));
+			future.add(new Task(o.getString("name"),o.getInt("cost"),o.getInt("time"),o.getInt("reward")));
 		}
 		JSONArray a = obj.getJSONArray("tasksInProgress");
+		
 		for(int i = 0 ; i < a.length() ; i++)
 		{
 			JSONArray subA = a.getJSONArray(i);
 			JSONObject o = (JSONObject) subA.get(1);
 			current.add(new Task(o.getString("name"),o.getInt("cost"),o.getInt("time"),o.getInt("reward")));
 		}
+		
 		}catch(JSONException e){
 			throw new RuntimeException(e);
 		};
@@ -42,6 +45,9 @@ public class TaskStatusLists {
 	public ArrayList<Task> getCurrentlyInactive(){
 		
 		return future;
+	}
+	public int getNumFreeEmployees(){
+		return numEmployees;
 	}
 	
 

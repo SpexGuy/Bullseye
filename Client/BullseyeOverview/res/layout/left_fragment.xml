@@ -12,6 +12,13 @@
         android:gravity="center_vertical|center_horizontal"
         android:text="Things to do:"
         android:textSize="40sp" />
+    <TextView 
+        android:id="@+id/free_employees_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textSize="28sp"
+        android:text="Employees Free: "/> 	
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -26,6 +33,7 @@
             <TableLayout
                 android:id="@+id/task_list_TableLayout"
                 android:layout_width="match_parent"
+                android:stretchColumns="*"
                 android:layout_height="match_parent" >
 
                 <TableRow

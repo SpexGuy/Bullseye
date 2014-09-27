@@ -9,6 +9,7 @@ public class Task {
 		this.name=name;
 		this.cost=cost;
 		this.time=time;
+		this.reward=reward;
 	}
 	public String getName(){
 		return name;
